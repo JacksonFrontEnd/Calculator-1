@@ -6,21 +6,33 @@ body {
 .calculator {
     background-color: #48494a;
     width: 500px;
-    height: 258px;
+    height: 283px;
     border: 1px solid #48494a;
     border-radius: 5px;
     box-shadow: 0px 5px 25px -3px rgba(0, 0, 0, 0.75);
     margin: 15px;
 }
 
-.output {
+.output-container {
+    color: #e5e5e5;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.output-top {
+    height: 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-right: 5px;
+    color: #c7c7c7;
+}
+
+.output-bottom {
     height: 43px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-family: 'Courier New', Courier, monospace;
     font-size: 1.5em;
-    color: #e5e5e5;
     padding-right: 5px;
 }
 
