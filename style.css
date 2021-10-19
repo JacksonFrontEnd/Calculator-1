@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.calculator {
+    background-color: #48494a;
+    width: 500px;
+    height: 258px;
+    border: 1px solid #48494a;
+    border-radius: 5px;
+    box-shadow: 0px 5px 25px -3px rgba(0, 0, 0, 0.75);
+    margin: 15px;
+}
+
+.output {
+    height: 43px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5em;
+    color: #e5e5e5;
+    padding-right: 5px;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: sans-serif;
+}
+
+.button {
+    width: 50px;
+    height: 43px;
+    background-color: #5a5b5c;
+    color: #e5e5e5;
+    box-sizing: border-box;
+    border: 1px solid #48494a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover {
+    background-color: rgb(93, 207, 71);
+    cursor: pointer;
+    color: #48494a;
+}
+
+.orange {
+    background-color: #fe9e09;
+    font-size: 1.2em;
+}
+
+.number {
+    background-color: #757677;
+    font-size: 1.2em;
+}
+
+.big {
+    width: 100px;
+}
+
+.rounded-bl {
+    border-radius: 0 0 0 5px;
+}
+
+.rounded-br {
+    border-radius: 0 0 5px 0;
+}
+
+.superscript {
+    font-size: 0.7em;
+    position: relative;
+    top: -5px;
+}
+
+.subscript {
+    font-size: 0.7em;
+    position: relative;
+    top: +5px;
+}
