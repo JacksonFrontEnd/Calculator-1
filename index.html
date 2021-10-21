@@ -12,61 +12,61 @@
 <body>
     <div class="calculator">
         <div class="output-container">
-            <div class="output-top"></div>
-            <div class="output-bottom">0</div>
+            <!-- <div class="output-top">1234*56789</div> -->
+            <div class="output-bottom"><output id="output"></output></div>
         </div>
+
         <div class="button-container">
-            <div class="button">(</div>
-            <div class="button">)</div>
-            <div class="button">mc</div>
-            <div class="button">m+</div>
-            <div class="button">m-</div>
-            <div class="button">mr</div>
+            <div class="button ">(</div>
+            <div class="button ">)</div>
+            <div class="button ">mc</div>
+            <div class="button ">m+</div>
+            <div class="button ">m-</div>
+            <div class="button ">mr</div>
             <div class="button" id="ac">AC</div>
             <div class="button">+/-</div>
             <div class="button">%</div>
-            <div class="button orange">&#xf7;</div>
-            <div class="button">2<sup class="superscript">nd</sup></div>
-            <div class="button">x<sup class="superscript">2</sup></div>
-            <div class="button">x<sup class="superscript">3</sup></div>
-            <div class="button">x<sup class="superscript">y</sup></div>
-            <div class="button">e<sup class="superscript">3</sup></div>
-            <div class="button">10<sup class="superscript">x</sup></div>
+            <div class="button orange" data-operation="/" id="divide">&#xf7;</div>
+            <div class="button ">2<sup class="superscript">nd</sup></div>
+            <div class="button ">x<sup class="superscript">2</sup></div>
+            <div class="button ">x<sup class="superscript">3</sup></div>
+            <div class="button ">x<sup class="superscript">y</sup></div>
+            <div class="button ">e<sup class="superscript">3</sup></div>
+            <div class="button ">10<sup class="superscript">x</sup></div>
             <div class="button number">7</div>
             <div class="button number">8</div>
             <div class="button number">9</div>
-            <div class="button orange">&#xd7;</div>
-            <div class="button">1/x</div>
-            <div class="button">&#x221A;x</div>
-            <div class="button"><sup class="superscript">3</sup>&#x221A;x</div>
-            <div class="button"> <sup class="superscript">y</sup>&#x221A;x </div>
-            <div class="button">ln</div>
-            <div class="button">log<sub class="subscript">10</sub></div>
+            <div class="button orange" data-operation="*" id="multiply">&#xd7;</div>
+            <div class="button ">1/x</div>
+            <div class="button ">&#x221A;x</div>
+            <div class="button "><sup class="superscript">3</sup>&#x221A;x</div>
+            <div class="button "> <sup class="superscript">y</sup>&#x221A;x </div>
+            <div class="button ">ln</div>
+            <div class="button ">log<sub class="subscript">10</sub></div>
             <div class="button number">4</div>
             <div class="button number">5</div>
             <div class="button number">6</div>
-            <div class="button orange">&#x2212;</div>
-            <div class="button">x!</div>
-            <div class="button">sin</div>
-            <div class="button">cos</div>
-            <div class="button">tan</div>
-            <div class="button">e</div>
-            <div class="button">EE</div>
-            <div class="button number">1</div>
+            <div class="button orange" data-operation="-" id="minus">&#x2212;</div>
+            <div class="button ">x!</div>
+            <div class="button ">sin</div>
+            <div class="button ">cos</div>
+            <div class="button ">tan</div>
+            <div class="button ">e</div>
+            <div class="button ">EE</div>
+            <div class="button number" data-value="1">1</div>
             <div class="button number">2</div>
             <div class="button number">3</div>
-            <div class="button orange">+</div>
-            <div class="button rounded-bl">Rad</div>
-            <div class="button">sinh</div>
-            <div class="button">cosh</div>
-            <div class="button">tanh</div>
-            <div class="button">&#8508;</div>
-            <div class="button">Rand</div>
+            <div class="button orange" data-operation="+" id="plus">+</div>
+            <div class="button rounded-bl ">Rad</div>
+            <div class="button ">sinh</div>
+            <div class="button ">cosh</div>
+            <div class="button ">tanh</div>
+            <div class="button ">&#8508;</div>
+            <div class="button ">Rand</div>
             <div class="button big number">0</div>
-            <div class="button number">,</div>
-            <div class="button orange rounded-br">=</div>
+            <div class="button number" value=".">,</div>
+            <div class="button orange rounded-br" data-operation="=" id="equals">=</div>
         </div>
-
     </div>
 
     <script src="script.js"></script>
