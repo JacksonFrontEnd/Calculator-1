@@ -62,7 +62,7 @@ body {
     color: #48494a;
 }
 
-.operation {
+.orange {
     background-color: #fe9e09;
     font-size: 1.2em;
 }
@@ -116,10 +116,6 @@ body {
     background-color: #b1b1b1;
 }
 
-.operation-light {
+.blue {
     background-color: #6098d8;
 }
-
-/* .unary {
-    background-color: blueviolet;
-} */

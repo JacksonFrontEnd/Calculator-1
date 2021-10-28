@@ -9,7 +9,7 @@ for (let i = 0; i < numbers.length; i++) {
 }
 
 
-// "+", "-", "*", "/", "=" operations
+// binary ("+", "-", "*", "/", "%", "x^y", "x root y") operations and "="
 const operations = document.getElementsByClassName("operation");
 
 for (let i = 0; i < operations.length; i++) {
@@ -18,10 +18,10 @@ for (let i = 0; i < operations.length; i++) {
 
 
 // unary operations
-const unaryOperations = document.getElementsByClassName("unary");
+const unaryOperationsDOM = document.getElementsByClassName("unary");
 
-for (let i = 0; i < unaryOperations.length; i++) {
-    unaryOperations[i].addEventListener("click", e => updateInput(e));
+for (let i = 0; i < unaryOperationsDOM.length; i++) {
+    unaryOperationsDOM[i].addEventListener("click", e => updateInput(e));
 }
 
 
@@ -68,28 +68,19 @@ const updateInput = (input) => {
         case "-":
         case "/":
         case "*":
-            addOperation(inputParsed);
+        case "%":
+        case "^":
+        case "y√x":
+            binaryOperation(inputParsed);
             break;
         case "plusminus":
-            unaryPlusMinus();
-            break;
         case "xsquared":
-            unarySquared();
-            break;
         case "xcubed":
-            unaryCubed();
-            break;
         case "tentox":
-            unaryTenToX();
-            break;
         case "inverse":
-            unaryInverse();
-            break;
         case "sqrt":
-            unarySqrt();
-            break;
         case "cbrt":
-            unaryCbrt();
+            unaryOperation(inputParsed);
             break;
         case "factorial":
             unaryFactorial();
@@ -100,7 +91,6 @@ const updateInput = (input) => {
     }
 }
 
-
 // functions
 const addDigit = (digit) => {
     if (outputField.value === "0") {
@@ -110,138 +100,100 @@ const addDigit = (digit) => {
 }
 
 const addComma = () => {
-    expressionStorage = outputField.value.split(" ");
+    const currentExpression = outputField.value.split(" ");
 
-    let hasComma = expressionStorage[expressionStorage.length - 1].includes(".");
+    let hasComma = currentExpression[currentExpression.length - 1].includes(".");
 
     if (!hasComma) {
-        expressionStorage[expressionStorage.length - 1] += ".";
-        outputField.value = expressionStorage.join(" ");
+        currentExpression[currentExpression.length - 1] += ".";
+        outputField.value = currentExpression.join(" ");
     }
 };
 
-const addOperation = operation => outputField.value += " " + operation + " ";
+const binaryOperation = operation => {
+    const currentExpression = outputField.value.split(" ");
+
+    if (currentExpression.length === 1) { // if there is only the left operand
+        outputField.value += " " + operation + " ";
+    } else if (currentExpression[2]) { // if there are 2 operands
+        outputField.value = calculate();
+        outputField.value += " " + operation + " ";
+    } else {
+        outputField.value = outputField.value.slice(0, -3);
+        outputField.value += " " + operation + " ";
+    }
+}
 
 const equals = () => {
-    expressionStorage = outputField.value.split(" ");
-    outputField.value = calculate(expressionStorage);
+    const currentExpression = outputField.value.split(" ");
+
+    if (currentExpression[2]) { // if there are 2 operands
+        outputField.value = calculate();
+    }
 }
 
 
 // unary functions
-const unaryPlusMinus = () => {
-    expressionStorage = outputField.value.split(" ");
+const unaryOperation = (operation) => {
+    const currentExpression = outputField.value.split(" ");
 
-    let lastElement = expressionStorage[expressionStorage.length - 1];
+    const lastElement = currentExpression[currentExpression.length - 1];
 
-    if (lastElement !== "0" && lastElement !== "") {
-        let result = -1 * lastElement;
-        expressionStorage.splice(-1, 1, result);
-        outputField.value = expressionStorage.join(" ");
-    } else {
-        alert("first enter a number");
+    let result;
+
+    if (currentExpression.length === 1 || currentExpression[2]) { // if there is only the left operand or there are 2 operands
+        switch (operation) {
+            case "plusminus":
+                if (lastElement !== "0" && lastElement !== "") { // if the left or the right operand is a non 0 number
+                    result = -1 * lastElement;
+                } else {
+                    alert("first enter a number");
+                    result = 0;
+                }
+                break;
+            case "xsquared":
+                result = lastElement ** 2;
+                break;
+            case "xcubed":
+                result = lastElement ** 3;
+                break;
+            case "tentox":
+                result = 10 ** lastElement;
+                break;
+            case "inverse":
+                if (lastElement !== "0") {
+                    result = 1 / lastElement;
+                } else {
+                    alert("division by 0");
+                    result = 0;
+                }
+                break;
+            case "sqrt":
+                result = lastElement ** (1 / 2);
+                break;
+            case "cbrt":
+                result = lastElement ** (1 / 3);
+                break;
+            case "factorial":
+                if (lastElement >= 1 && !(lastElement % 1)) {
+                    result = factorial(lastElement);
+                } else {
+                    alert("Enter a positive integer");
+                }
+        }
     }
+    currentExpression.splice(-1, 1, result);
+
+    outputField.value = currentExpression.join(" ");
 }
 
-const unarySquared = () => {
-    expressionStorage = outputField.value.split(" ");
-
-    const lastElement = expressionStorage[expressionStorage.length - 1];
-
-    const result = lastElement ** 2;
-
-    console.log(result);
-
-    expressionStorage.splice(-1, 1, result);
-
-    outputField.value = expressionStorage.join(" ");
-};
-
-const unaryCubed = () => {
-    expressionStorage = outputField.value.split(" ");
-
-    const lastElement = expressionStorage[expressionStorage.length - 1];
-
-    const result = lastElement ** 3;
-
-    expressionStorage.splice(-1, 1, result);
-
-    outputField.value = expressionStorage.join(" ");
-};
-
-
-const unaryTenToX = () => {
-    expressionStorage = outputField.value.split(" ");
-
-    const lastElement = expressionStorage[expressionStorage.length - 1];
-
-    const result = 10 ** lastElement;
-
-    expressionStorage.splice(-1, 1, result);
-
-    outputField.value = expressionStorage.join(" ");
-}
-
-const unaryInverse = () => {
-    expressionStorage = outputField.value.split(" ");
-
-    const lastElement = expressionStorage[expressionStorage.length - 1];
-
-    const result = 1 / lastElement;
-
-    expressionStorage.splice(-1, 1, result);
-
-    outputField.value = expressionStorage.join(" ");
-}
-
-const unarySqrt = () => {
-    expressionStorage = outputField.value.split(" ");
-
-    const lastElement = expressionStorage[expressionStorage.length - 1];
-
-    const result = lastElement ** (1 / 2);
-
-    expressionStorage.splice(-1, 1, result);
-
-    outputField.value = expressionStorage.join(" ");
-}
-
-
-const unaryCbrt = () => {
-    expressionStorage = outputField.value.split(" ");
-
-    const lastElement = expressionStorage[expressionStorage.length - 1];
-
-    const result = lastElement ** (1 / 3);
-
-    expressionStorage.splice(-1, 1, result);
-
-    outputField.value = expressionStorage.join(" ");
-}
-
-const unaryFactorial = () => {
-    expressionStorage = outputField.value.split(" ");
-
-    const lastElement = expressionStorage[expressionStorage.length - 1];
-
-    if (lastElement >= 1 && !(lastElement % 1)) {
-
-        let result = factorial(lastElement);
-
-        expressionStorage.splice(-1, 1, result);
-
-        outputField.value = expressionStorage.join(" ");
-    } else {
-        alert("Enter a positive integer");
-    }
-}
 
 const factorial = (n) => n === 1 ? 1 : n * factorial(n - 1);
 
 
 // calculating result (temporarily with eval())
-const calculate = (expression) => {
-    return eval(expression.join(""));
+const calculate = () => {
+    return eval(outputField.value);
 }
 
 
@@ -254,9 +206,9 @@ ac.addEventListener("click", () => {
 
 
 //theme switching
-const switchTheme = document.getElementById("switch-theme");
+const switchThemeButton = document.getElementById("switch-theme");
 
-switchTheme.addEventListener("click", () => {
+switchThemeButton.addEventListener("click", () => {
 
     const buttons = document.getElementsByClassName("button");
 
@@ -268,8 +220,10 @@ switchTheme.addEventListener("click", () => {
         numbers[i].classList.toggle("number-light");
     }
 
-    for (let i = 0; i < operations.length; i++) {
-        operations[i].classList.toggle("operation-light");
+    const orangeButtons = document.getElementsByClassName("orange");
+
+    for (let i = 0; i < orangeButtons.length; i++) {
+        orangeButtons[i].classList.toggle("blue");
     }
 
     document.getElementsByClassName("output-bottom")[0].classList.toggle("output-bottom-light");
