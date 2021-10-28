@@ -80,10 +80,8 @@ const updateInput = (input) => {
         case "inverse":
         case "sqrt":
         case "cbrt":
-            unaryOperation(inputParsed);
-            break;
         case "factorial":
-            unaryFactorial();
+            unaryOperation(inputParsed);
             break;
         case "=":
             equals();
