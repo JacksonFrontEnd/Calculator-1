@@ -10,7 +10,7 @@ body {
 
 .calculator {
     background-color: #48494a;
-    width: 500px;
+    width: 350px;
     height: 258px;
     border: 1px solid #48494a;
     border-radius: 5px;
@@ -24,13 +24,19 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 1.6em;
+    font-size: 1.8em;
     padding-right: 5px;
+    padding-left: 5px;
     border: 1px solid #48494a;
     color: #e5e5e5;
     font-family: 'Digital7', 'Courier New', Courier, monospace;
     box-sizing: border-box;
     border-radius: 5px 5px 0 0;
+    overflow-x: hidden;
+}
+
+#output {
+    white-space: nowrap;
 }
 
 .button-container {
@@ -113,3 +119,7 @@ body {
 .operation-light {
     background-color: #6098d8;
 }
+
+/* .unary {
+    background-color: blueviolet;
+} */
