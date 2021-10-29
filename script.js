@@ -191,7 +191,56 @@ const factorial = (n) => n === 1 ? 1 : n * factorial(n - 1);
 
 // calculating result (temporarily with eval())
 const calculate = () => {
-    return eval(outputField.value);
+    const currentExpression = outputField.value.split(" ");
+
+    const leftOperand = currentExpression[0];
+
+    const operation = currentExpression[1];
+
+    const rightOperand = currentExpression[2];
+
+    let result;
+
+    switch (operation) {
+        case "+":
+            result = +leftOperand + +rightOperand;
+            break;
+        case "-":
+            result = leftOperand - rightOperand;
+            break;
+        case "/":
+            if (rightOperand !== "0") {
+                result = leftOperand / rightOperand;
+            } else {
+                result = 0;
+                alert("dividing by 0");
+            }
+            break;
+        case "*":
+            result = leftOperand * rightOperand;
+            break;
+        case "%":
+            if (rightOperand !== "0") {
+                result = leftOperand / rightOperand * 100;
+            } else {
+                result = 0;
+                alert("dividing by 0");
+            }
+            break;
+        case "^":
+            result = leftOperand ** rightOperand;
+            break;
+        case "y√x":
+            if (rightOperand !== "0") {
+                result = rightOperand ** (1 / leftOperand);
+            } else {
+                result = 0;
+                alert("dividing by 0");
+            }
+            break;
+    }
+
+    return result;
 }
 
 
