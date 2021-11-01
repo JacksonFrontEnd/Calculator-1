@@ -31,7 +31,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-// input, output and expression history storage
+// output and expression history storage
 const outputField = document.getElementById("output");
 outputField.value = 0;
 const expressionHistory = [[0]];
@@ -140,16 +140,15 @@ const unaryOperation = (operation) => {
 
     const lastElement = currentExpression[currentExpression.length - 1];
 
-    let result;
+    let result = 0;
 
     if (currentExpression.length === 1 || currentExpression[2]) { // if there is only the left operand or there are 2 operands
         switch (operation) {
             case "plusminus":
-                if (lastElement !== "0" && lastElement !== "") { // if the left or the right operand is a non 0 number
+                if (lastElement !== "0") { // if the left or the right operand is a non 0 number
                     result = -1 * lastElement;
                 } else {
                     alert("first enter a number");
-                    result = 0;
                 }
                 break;
             case "xsquared":
@@ -166,7 +165,6 @@ const unaryOperation = (operation) => {
                     result = 1 / lastElement;
                 } else {
                     alert("division by 0");
-                    result = 0;
                 }
                 break;
             case "sqrt":
@@ -196,26 +194,25 @@ const factorial = (n) => n === 1 ? 1 : n * factorial(n - 1);
 const calculate = () => {
     const currentExpression = outputField.value.split(" ");
 
-    const leftOperand = currentExpression[0];
+    const leftOperand = Number(currentExpression[0]);
 
     const operation = currentExpression[1];
 
-    const rightOperand = currentExpression[2];
+    const rightOperand = Number(currentExpression[2]);
 
-    let result;
+    let result = 0;
 
     switch (operation) {
         case "+":
-            result = +leftOperand + +rightOperand;
+            result = leftOperand + rightOperand;
             break;
         case "-":
             result = leftOperand - rightOperand;
             break;
         case "/":
-            if (rightOperand !== "0") {
+            if (rightOperand !== 0) {
                 result = leftOperand / rightOperand;
             } else {
-                result = 0;
                 alert("dividing by 0");
             }
             break;
@@ -223,21 +220,19 @@ const calculate = () => {
             result = leftOperand * rightOperand;
             break;
         case "%":
-            if (rightOperand !== "0") {
-                result = leftOperand / rightOperand * 100;
+            if (rightOperand !== 0) {
+                result = leftOperand % rightOperand;
             } else {
-                result = 0;
-                alert("dividing by 0");
+                alert("illegal operation");
             }
             break;
         case "^":
             result = leftOperand ** rightOperand;
             break;
         case "y√x":
-            if (rightOperand !== "0") {
+            if (leftOperand !== 0) {
                 result = rightOperand ** (1 / leftOperand);
             } else {
-                result = 0;
                 alert("dividing by 0");
             }
             break;
