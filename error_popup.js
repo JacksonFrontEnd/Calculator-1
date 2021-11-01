@@ -1,9 +1,18 @@
 "use strict";
 
-// let errorPopup = document.createElement("DIV");
+let errorPopup = document.createElement("DIV");
 
-// document.body.appendChild(errorPopup);
+errorPopup.className = "popup";
+
+document.body.appendChild(errorPopup);
 
 const showError = errorMsg => {
-    alert(errorMsg);
+    errorPopup.innerHTML = errorMsg;
+
+    errorPopup.style.visibility = "visible";
+
+    setTimeout(() => {
+        errorPopup.innerHTML = "";
+        errorPopup.style.visibility = "hidden";
+    }, 3000);
 }

@@ -120,3 +120,13 @@ body {
 .blue {
     background-color: #6098d8;
 }
+
+.popup {
+    background-color: rgb(216, 149, 149);
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+    color: #e5e5e5;
+    text-align: center;
+    font-size: 1.2em;
+    padding: 5px;
+    visibility: hidden;
+}
