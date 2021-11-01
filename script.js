@@ -31,10 +31,11 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-// input, output and expression storage
+// input, output and expression history storage
 const outputField = document.getElementById("output");
 outputField.value = 0;
-let expressionStorage;
+const expressionHistory = [[0]];
+
 
 
 // parsing input
@@ -114,6 +115,7 @@ const binaryOperation = operation => {
     if (currentExpression.length === 1) { // if there is only the left operand
         outputField.value += " " + operation + " ";
     } else if (currentExpression[2]) { // if there are 2 operands
+        expressionHistory.push(currentExpression);
         outputField.value = calculate();
         outputField.value += " " + operation + " ";
     } else {
@@ -126,6 +128,7 @@ const equals = () => {
     const currentExpression = outputField.value.split(" ");
 
     if (currentExpression[2]) { // if there are 2 operands
+        expressionHistory.push(currentExpression);
         outputField.value = calculate();
     }
 }
@@ -189,7 +192,7 @@ const unaryOperation = (operation) => {
 const factorial = (n) => n === 1 ? 1 : n * factorial(n - 1);
 
 
-// calculating result (temporarily with eval())
+// calculating result
 const calculate = () => {
     const currentExpression = outputField.value.split(" ");
 
@@ -250,6 +253,18 @@ const ac = document.getElementById("ac");
 ac.addEventListener("click", () => {
     outputField.value = 0;
 });
+
+
+// cancel button
+const cancelButton = document.getElementById("cancel");
+
+cancelButton.addEventListener("click", () => goBack());
+
+const goBack = () => {
+    if (expressionHistory.length) {
+        outputField.value = expressionHistory.pop().join(" ");
+    }
+}
 
 
 //theme switching
