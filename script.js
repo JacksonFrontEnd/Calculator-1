@@ -136,13 +136,13 @@ const equals = () => {
 
 // unary functions
 const unaryOperation = (operation) => {
-    const currentExpression = outputField.value.split(" ");
+    const currentExpression = outputField.value.trim().split(" ");
 
     const lastElement = currentExpression[currentExpression.length - 1];
 
     let result = 0;
 
-    if (currentExpression.length === 1 || currentExpression[2]) { // if there is only the left operand or there are 2 operands
+    if (currentExpression.length !== 2) { // if there is only the left operand or there are 2 operands
         switch (operation) {
             case "plusminus":
                 if (lastElement !== "0") { // if the left or the right operand is a non 0 number
@@ -180,11 +180,13 @@ const unaryOperation = (operation) => {
                     alert("Enter a positive integer");
                 }
         }
-    }
-    currentExpression.splice(-1, 1, result);
+        currentExpression.splice(-1, 1, result);
 
-    outputField.value = currentExpression.join(" ");
+        outputField.value = currentExpression.join(" ");
+    }
 }
+
+
 
 
 const factorial = (n) => n === 1 ? 1 : n * factorial(n - 1);
@@ -233,7 +235,7 @@ const calculate = () => {
             if (leftOperand !== 0) {
                 result = rightOperand ** (1 / leftOperand);
             } else {
-                alert("dividing by 0");
+                alert("illegal operation");
             }
             break;
     }

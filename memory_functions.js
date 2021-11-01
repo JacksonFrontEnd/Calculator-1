@@ -21,14 +21,25 @@ mCButton.addEventListener("click", () => mC());
 let mMemory = 0;
 
 const mPlus = () => {
+    const currentExpression = outputField.value.trim().split(" ");
 
+    let numberToAdd = currentExpression.length === 3 ? Number(currentExpression[2]) : Number(currentExpression[0]);
+
+    mMemory += numberToAdd;
 }
 
-const mMinus = () => { };
+const mMinus = () => {
+    const currentExpression = outputField.value.trim().split(" ");
 
-const mR = () => { };
+    let numberToSubtract = currentExpression.length === 3 ? Number(currentExpression[2]) : Number(currentExpression[0]);
+
+    mMemory -= numberToSubtract;
+};
+
+const mR = () => {
+    outputField.value = mMemory;
+};
 
 const mC = () => {
-
     mMemory = 0;
 }
