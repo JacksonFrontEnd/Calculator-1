@@ -1,5 +1,6 @@
 "use strict";
 
+
 const mPlusButton = document.getElementById("mplus");
 
 const mMinusButton = document.getElementById("mminus");
@@ -19,6 +20,7 @@ mCButton.addEventListener("click", () => mC());
 
 
 let mMemory = 0;
+
 
 const mPlus = () => {
     const currentExpression = outputField.value.trim().split(" ");

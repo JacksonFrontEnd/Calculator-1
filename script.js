@@ -34,8 +34,8 @@ document.addEventListener("keydown", (e) => {
 // output and expression history storage
 const outputField = document.getElementById("output");
 outputField.value = 0;
-const expressionHistory = [[0]];
 
+const expressionHistory = [[0]];
 
 
 // parsing input
@@ -90,6 +90,7 @@ const updateInput = (input) => {
     }
 }
 
+
 // functions
 const addDigit = (digit) => {
     if (outputField.value === "0") {
@@ -97,6 +98,7 @@ const addDigit = (digit) => {
     }
     outputField.value += digit;
 }
+
 
 const addComma = () => {
     const currentExpression = outputField.value.split(" ");
@@ -108,6 +110,7 @@ const addComma = () => {
         outputField.value = currentExpression.join(" ");
     }
 };
+
 
 const binaryOperation = operation => {
     const currentExpression = outputField.value.split(" ");
@@ -147,8 +150,6 @@ const unaryOperation = (operation) => {
             case "plusminus":
                 if (lastElement !== "0") { // if the left or the right operand is a non 0 number
                     result = -1 * lastElement;
-                } else {
-                    alert("first enter a number");
                 }
                 break;
             case "xsquared":
@@ -164,9 +165,9 @@ const unaryOperation = (operation) => {
                 if (lastElement !== "0") {
                     result = 1 / lastElement;
                 } else {
-                    alert("division by 0");
+                    showError("Can't divide by 0");
+                    break;
                 }
-                break;
             case "sqrt":
                 result = lastElement ** (1 / 2);
                 break;
@@ -177,16 +178,16 @@ const unaryOperation = (operation) => {
                 if (lastElement >= 1 && !(lastElement % 1)) {
                     result = factorial(lastElement);
                 } else {
-                    alert("Enter a positive integer");
+                    showError("Enter a positive integer");
                 }
         }
-        currentExpression.splice(-1, 1, result);
-
-        outputField.value = currentExpression.join(" ");
     }
+
+    currentExpression.splice(-1, 1, result);
+
+    outputField.value = currentExpression.join(" ");
+
 }
-
-
 
 
 const factorial = (n) => n === 1 ? 1 : n * factorial(n - 1);
@@ -215,7 +216,7 @@ const calculate = () => {
             if (rightOperand !== 0) {
                 result = leftOperand / rightOperand;
             } else {
-                alert("dividing by 0");
+                showError("Can't divide by 0");
             }
             break;
         case "*":
@@ -225,7 +226,7 @@ const calculate = () => {
             if (rightOperand !== 0) {
                 result = leftOperand % rightOperand;
             } else {
-                alert("illegal operation");
+                showError("Can't divide by 0");
             }
             break;
         case "^":
@@ -235,7 +236,7 @@ const calculate = () => {
             if (leftOperand !== 0) {
                 result = rightOperand ** (1 / leftOperand);
             } else {
-                alert("illegal operation");
+                showError("Can't get 0th root");
             }
             break;
     }
