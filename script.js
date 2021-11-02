@@ -32,7 +32,6 @@ document.addEventListener("keydown", (e) => {
 
 
 // output and expression history storage
-const outputField = document.getElementById("output");
 outputField.value = 0;
 
 const expressionHistory = [[0]];
@@ -185,7 +184,6 @@ const unaryOperation = (operation) => {
 
         outputField.value = currentExpression.join(" ");
     }
-
 }
 
 

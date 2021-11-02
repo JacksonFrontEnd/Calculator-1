@@ -1,10 +1,10 @@
 "use strict";
 
-let errorPopup = document.createElement("DIV");
 
+let errorPopup = document.createElement("div");
 errorPopup.className = "popup";
-
 document.body.appendChild(errorPopup);
+
 
 const showError = errorMsg => {
     errorPopup.innerHTML = errorMsg;

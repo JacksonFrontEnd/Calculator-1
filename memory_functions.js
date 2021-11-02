@@ -2,20 +2,14 @@
 
 
 const mPlusButton = document.getElementById("mplus");
-
 const mMinusButton = document.getElementById("mminus");
-
 const mRButton = document.getElementById("mr");
-
 const mCButton = document.getElementById("mc");
 
 
 mPlusButton.addEventListener("click", () => mPlus());
-
 mMinusButton.addEventListener("click", () => mMinus());
-
 mRButton.addEventListener("click", () => mR());
-
 mCButton.addEventListener("click", () => mC());
 
 
