@@ -181,11 +181,10 @@ const unaryOperation = (operation) => {
                     showError("Enter a positive integer");
                 }
         }
+        currentExpression.splice(-1, 1, result);
+
+        outputField.value = currentExpression.join(" ");
     }
-
-    currentExpression.splice(-1, 1, result);
-
-    outputField.value = currentExpression.join(" ");
 
 }
 
