@@ -190,58 +190,6 @@ const unaryOperation = (operation) => {
 const factorial = (n) => n === 1 ? 1 : n * factorial(n - 1);
 
 
-// calculating result
-const calculate = () => {
-    const currentExpression = outputField.value.split(" ");
-
-    const leftOperand = Number(currentExpression[0]);
-
-    const operation = currentExpression[1];
-
-    const rightOperand = Number(currentExpression[2]);
-
-    let result = 0;
-
-    switch (operation) {
-        case "+":
-            result = leftOperand + rightOperand;
-            break;
-        case "-":
-            result = leftOperand - rightOperand;
-            break;
-        case "/":
-            if (rightOperand !== 0) {
-                result = leftOperand / rightOperand;
-            } else {
-                showError("Can't divide by 0");
-            }
-            break;
-        case "*":
-            result = leftOperand * rightOperand;
-            break;
-        case "%":
-            if (rightOperand !== 0) {
-                result = leftOperand % rightOperand;
-            } else {
-                showError("Can't divide by 0");
-            }
-            break;
-        case "^":
-            result = leftOperand ** rightOperand;
-            break;
-        case "y√x":
-            if (leftOperand !== 0) {
-                result = rightOperand ** (1 / leftOperand);
-            } else {
-                showError("Can't get 0th root");
-            }
-            break;
-    }
-
-    return result;
-}
-
-
 // clear function
 const ac = document.getElementById("ac");
 
@@ -260,28 +208,3 @@ const goBack = () => {
         outputField.value = expressionHistory.pop().join(" ");
     }
 }
-
-
-//theme switching
-const switchThemeButton = document.getElementById("switch-theme");
-
-switchThemeButton.addEventListener("click", () => {
-
-    const buttons = document.getElementsByClassName("button");
-
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.toggle("button-light");
-    }
-
-    for (let i = 0; i < numbers.length; i++) {
-        numbers[i].classList.toggle("number-light");
-    }
-
-    const orangeButtons = document.getElementsByClassName("orange");
-
-    for (let i = 0; i < orangeButtons.length; i++) {
-        orangeButtons[i].classList.toggle("blue");
-    }
-
-    document.getElementsByClassName("output-bottom")[0].classList.toggle("output-bottom-light");
-})
