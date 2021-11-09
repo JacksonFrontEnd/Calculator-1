@@ -1,45 +1,45 @@
-"use strict";
-
-import { outputField } from "./index";
-
-export { addMemoryButtons };
-
-const addMemoryButtons = () => {
-    const mPlusButton = document.getElementById("mplus");
-    const mMinusButton = document.getElementById("mminus");
-    const mRButton = document.getElementById("mr");
-    const mCButton = document.getElementById("mc");
-
-    mPlusButton.addEventListener("click", () => mPlus());
-    mMinusButton.addEventListener("click", () => mMinus());
-    mRButton.addEventListener("click", () => mR());
-    mCButton.addEventListener("click", () => mC());
-}
-
+import { outputField } from './index';
 
 let mMemory = 0;
 
-
 const mPlus = () => {
-    const currentExpression = outputField.value.trim().split(" ");
+  const currentExpression = outputField.value.trim().split(' ');
 
-    let numberToAdd = currentExpression.length === 3 ? Number(currentExpression[2]) : Number(currentExpression[0]);
+  const numberToAdd = currentExpression.length === 3
+    ? Number(currentExpression[2])
+    : Number(currentExpression[0]);
 
-    mMemory += numberToAdd;
-}
+  mMemory += numberToAdd;
+};
 
 const mMinus = () => {
-    const currentExpression = outputField.value.trim().split(" ");
+  const currentExpression = outputField.value.trim().split(' ');
 
-    let numberToSubtract = currentExpression.length === 3 ? Number(currentExpression[2]) : Number(currentExpression[0]);
+  const numberToSubtract = currentExpression.length === 3
+    ? Number(currentExpression[2])
+    : Number(currentExpression[0]);
 
-    mMemory -= numberToSubtract;
+  mMemory -= numberToSubtract;
 };
 
 const mR = () => {
-    outputField.value = mMemory;
+  outputField.value = mMemory;
 };
 
 const mC = () => {
-    mMemory = 0;
-}
+  mMemory = 0;
+};
+
+const addMemoryButtons = () => {
+  const mPlusButton = document.getElementById('mplus');
+  const mMinusButton = document.getElementById('mminus');
+  const mRButton = document.getElementById('mr');
+  const mCButton = document.getElementById('mc');
+
+  mPlusButton.addEventListener('click', () => mPlus());
+  mMinusButton.addEventListener('click', () => mMinus());
+  mRButton.addEventListener('click', () => mR());
+  mCButton.addEventListener('click', () => mC());
+};
+
+export { addMemoryButtons };

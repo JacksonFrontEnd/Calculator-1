@@ -1,47 +1,45 @@
-"use strict";
+import { updateInput, goBack } from './input_functions';
 
-import { updateInput, goBack } from "./input_functions";
-
-import { outputField } from "./index";
-
-export { addEventListeners };
+import { outputField } from './index';
 
 const addEventListeners = () => {
-    // numbers and ","
-    const numbers = document.getElementsByClassName("number");
+  // numbers and ","
+  const numbers = document.getElementsByClassName('number');
 
-    for (let i = 0; i < numbers.length; i++) {
-        numbers[i].addEventListener("click", e => updateInput(e));
-    }
+  for (let i = 0; i < numbers.length; i++) {
+    numbers[i].addEventListener('click', (e) => updateInput(e));
+  }
 
-    // binary ("+", "-", "*", "/", "%", "x^y", "x root y") operations and "="
-    const operations = document.getElementsByClassName("operation");
+  // binary ("+", "-", "*", "/", "%", "x^y", "x root y") operations and "="
+  const operations = document.getElementsByClassName('operation');
 
-    for (let i = 0; i < operations.length; i++) {
-        operations[i].addEventListener("click", e => updateInput(e));
-    }
+  for (let i = 0; i < operations.length; i++) {
+    operations[i].addEventListener('click', (e) => updateInput(e));
+  }
 
-    // unary operations
-    const unaryOperationsDOM = document.getElementsByClassName("unary");
+  // unary operations
+  const unaryOperationsDOM = document.getElementsByClassName('unary');
 
-    for (let i = 0; i < unaryOperationsDOM.length; i++) {
-        unaryOperationsDOM[i].addEventListener("click", e => updateInput(e));
-    }
+  for (let i = 0; i < unaryOperationsDOM.length; i++) {
+    unaryOperationsDOM[i].addEventListener('click', (e) => updateInput(e));
+  }
 
-    // clear button
-    const ac = document.getElementById("ac");
+  // clear button
+  const ac = document.getElementById('ac');
 
-    ac.addEventListener("click", () => {
-        outputField.value = 0;
-    });
+  ac.addEventListener('click', () => {
+    outputField.value = 0;
+  });
 
-    // cancel button
-    const cancelButton = document.getElementById("cancel");
+  // cancel button
+  const cancelButton = document.getElementById('cancel');
 
-    cancelButton.addEventListener("click", () => goBack());
+  cancelButton.addEventListener('click', () => goBack());
 
-    // keyboard input
-    document.addEventListener("keydown", (e) => {
-        updateInput(e);
-    });
-}
+  // keyboard input
+  document.addEventListener('keydown', (e) => {
+    updateInput(e);
+  });
+};
+
+export { addEventListeners };
