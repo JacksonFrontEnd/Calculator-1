@@ -6,6 +6,8 @@ import { outputField, expressionHistory } from "./index";
 
 import { calculate } from "./calculation";
 
+import { showError } from "./error_popup";
+
 // parsing input
 const updateInput = (input) => {
     let inputParsed;

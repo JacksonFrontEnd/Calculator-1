@@ -1,10 +1,14 @@
 "use strict";
 
+export { addErrorElement, showError };
 
-let errorPopup = document.createElement("div");
-errorPopup.className = "popup";
-document.body.appendChild(errorPopup);
+let errorPopup;
 
+const addErrorElement = () => {
+    errorPopup = document.createElement("div");
+    errorPopup.className = "popup";
+    document.body.appendChild(errorPopup);
+}
 
 const showError = (errorMsg) => {
     errorPopup.innerHTML = errorMsg;

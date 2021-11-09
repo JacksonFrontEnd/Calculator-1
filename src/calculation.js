@@ -1,5 +1,7 @@
 "use strict";
 
+import { showError } from "./error_popup";
+
 export { calculate };
 
 const calculate = (currentExpression) => {
