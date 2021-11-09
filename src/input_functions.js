@@ -1,41 +1,10 @@
 "use strict";
 
+export { updateInput, addDigit, addComma, binaryOperation, unaryOperation, equals, goBack };
 
-// numbers and ","
-const numbers = document.getElementsByClassName("number");
+import { outputField, expressionHistory } from "./index";
 
-for (let i = 0; i < numbers.length; i++) {
-    numbers[i].addEventListener("click", e => updateInput(e));
-}
-
-
-// binary ("+", "-", "*", "/", "%", "x^y", "x root y") operations and "="
-const operations = document.getElementsByClassName("operation");
-
-for (let i = 0; i < operations.length; i++) {
-    operations[i].addEventListener("click", e => updateInput(e));
-}
-
-
-// unary operations
-const unaryOperationsDOM = document.getElementsByClassName("unary");
-
-for (let i = 0; i < unaryOperationsDOM.length; i++) {
-    unaryOperationsDOM[i].addEventListener("click", e => updateInput(e));
-}
-
-
-// keyboard input
-document.addEventListener("keydown", (e) => {
-    updateInput(e);
-});
-
-
-// output and expression history storage
-outputField.value = 0;
-
-const expressionHistory = [[0]];
-
+import { calculate } from "./calculation";
 
 // parsing input
 const updateInput = (input) => {
@@ -118,7 +87,7 @@ const binaryOperation = operation => {
         outputField.value += " " + operation + " ";
     } else if (currentExpression[2]) { // if there are 2 operands
         expressionHistory.push(currentExpression);
-        outputField.value = calculate();
+        outputField.value = calculate(currentExpression);
         outputField.value += " " + operation + " ";
     } else {
         outputField.value = outputField.value.slice(0, -3);
@@ -131,7 +100,7 @@ const equals = () => {
 
     if (currentExpression[2]) { // if there are 2 operands
         expressionHistory.push(currentExpression);
-        outputField.value = calculate();
+        outputField.value = calculate(currentExpression);
     }
 }
 
@@ -175,7 +144,7 @@ const unaryOperation = (operation) => {
                 break;
             case "factorial":
                 if (lastElement >= 1 && !(lastElement % 1)) {
-                    result = factorial(lastElement);
+                    result = factorial(Number(lastElement));
                 } else {
                     showError("Enter a positive integer");
                 }
@@ -189,19 +158,6 @@ const unaryOperation = (operation) => {
 
 const factorial = (n) => n === 1 ? 1 : n * factorial(n - 1);
 
-
-// clear function
-const ac = document.getElementById("ac");
-
-ac.addEventListener("click", () => {
-    outputField.value = 0;
-});
-
-
-// cancel button
-const cancelButton = document.getElementById("cancel");
-
-cancelButton.addEventListener("click", () => goBack());
 
 const goBack = () => {
     if (expressionHistory.length) {

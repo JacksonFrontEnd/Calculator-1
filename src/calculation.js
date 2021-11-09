@@ -1,8 +1,9 @@
 "use strict";
 
+export { calculate };
 
-const calculate = () => {
-    const currentExpression = outputField.value.split(" ");
+const calculate = (currentExpression) => {
+    // const currentExpression = outputField.value.split(" ");
 
     const leftOperand = Number(currentExpression[0]);
 

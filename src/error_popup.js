@@ -6,7 +6,7 @@ errorPopup.className = "popup";
 document.body.appendChild(errorPopup);
 
 
-const showError = errorMsg => {
+const showError = (errorMsg) => {
     errorPopup.innerHTML = errorMsg;
 
     errorPopup.style.visibility = "visible";

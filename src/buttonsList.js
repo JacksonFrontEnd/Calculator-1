@@ -1,5 +1,6 @@
 "use strict";
 
+export { buttonsList };
 
 const buttonsList = [
     { // first row
