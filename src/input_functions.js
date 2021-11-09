@@ -4,61 +4,6 @@ import { calculate } from './calculation';
 
 import { showError } from './error_popup';
 
-// parsing input
-const updateInput = (input) => {
-  let inputParsed;
-
-  if (input.key) {
-    // keyboard press
-    inputParsed = input.key;
-  } else {
-    // mouse click
-    inputParsed = input.target.dataset.value;
-  }
-
-  switch (inputParsed) {
-    case '0':
-    case '1':
-    case '2':
-    case '3':
-    case '4':
-    case '5':
-    case '6':
-    case '7':
-    case '8':
-    case '9':
-      addDigit(inputParsed);
-      break;
-    case '.':
-    case ',':
-      addComma();
-      break;
-    case '+':
-    case '-':
-    case '/':
-    case '*':
-    case '%':
-    case '^':
-    case 'y√x':
-      binaryOperation(inputParsed);
-      break;
-    case 'plusminus':
-    case 'xsquared':
-    case 'xcubed':
-    case 'tentox':
-    case 'inverse':
-    case 'sqrt':
-    case 'cbrt':
-    case 'factorial':
-      unaryOperation(inputParsed);
-      break;
-    case '=':
-      equals();
-      break;
-    default: break;
-  }
-};
-
 // functions
 const addDigit = (digit) => {
   if (outputField.value === '0') {
@@ -104,6 +49,8 @@ const equals = () => {
     outputField.value = calculate(currentExpression);
   }
 };
+
+const factorial = (n) => (n === 1 ? 1 : n * factorial(n - 1));
 
 // unary functions
 const unaryOperation = (operation) => {
@@ -159,7 +106,60 @@ const unaryOperation = (operation) => {
   }
 };
 
-const factorial = (n) => (n === 1 ? 1 : n * factorial(n - 1));
+// parsing input
+const updateInput = (input) => {
+  let inputParsed;
+
+  if (input.key) {
+    // keyboard press
+    inputParsed = input.key;
+  } else {
+    // mouse click
+    inputParsed = input.target.dataset.value;
+  }
+
+  switch (inputParsed) {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+      addDigit(inputParsed);
+      break;
+    case '.':
+    case ',':
+      addComma();
+      break;
+    case '+':
+    case '-':
+    case '/':
+    case '*':
+    case '%':
+    case '^':
+    case 'y√x':
+      binaryOperation(inputParsed);
+      break;
+    case 'plusminus':
+    case 'xsquared':
+    case 'xcubed':
+    case 'tentox':
+    case 'inverse':
+    case 'sqrt':
+    case 'cbrt':
+    case 'factorial':
+      unaryOperation(inputParsed);
+      break;
+    case '=':
+      equals();
+      break;
+    default: break;
+  }
+};
 
 const goBack = () => {
   if (expressionHistory.length) {
