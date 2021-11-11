@@ -104,8 +104,6 @@ const unaryOperation = (operation) => {
 
     outputField.value = currentExpression.join(' ');
   }
-
-  return result;
 };
 
 // parsing input
